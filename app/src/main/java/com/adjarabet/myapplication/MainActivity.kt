@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import android.content.Intent
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var button7 : Button
     private lateinit var button8 : Button
     private lateinit var button9 : Button
+    private lateinit var resetButton : Button
 
     var firstPlayer = ArrayList<Int>()
     var secondPlayer = ArrayList<Int>()
@@ -27,6 +29,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+
+        resetButton = findViewById(R.id.resetButton)
+
+        resetButton.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun init(){
@@ -123,10 +132,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (winner == 1){
             Toast.makeText(this, "first player won", Toast.LENGTH_SHORT).show()
-        } else if (winner == 2){
+        }else if (winner == 2){
             Toast.makeText(this, "second player won", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     override fun onClick(clickedView: View?) {
@@ -149,6 +157,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
-
 }
